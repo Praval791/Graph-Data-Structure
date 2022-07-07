@@ -27,5 +27,6 @@ In this repository, Some of the basic graph data structure methods and Algorithm
 - Articulation Points In Graph
 
 ### Resources :
-* [GFG]:<https://www.geeksforgeeks.org/>
+* [GFG]
 * TAKE YOU FORWARD (striver)
+[GFG]:<https://www.geeksforgeeks.org/>
