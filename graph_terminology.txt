@@ -1,0 +1,186 @@
+Real world examples =
+1. set of cities connected via rail route
+2. set of people, where some are friends
+3. connection among computers (routers )
+4. tree is a graph
+
+
+what is graph :
+In computing --->
+--- it is an abstract DT that meant to implement the graph concepts from mathematics.
+--> A graph is a collection of nodes,connected by edges
+In mathematics --->
+--- A graph G is connected by a set of N vertices or nodes, connected through a set of E of edges, or links.
+--> G=(E,V)
+
+
+--> A set V of elements called nodes (or points or vertices)
+--> A set E of edges such that edge a in E is identified with a unique (unordered) pair [u,v] of nodes in V, denoted by e=[u,v]
+--> we indicate the parts of the graph by writing G = (V,E)
+
+
+
+1. Adjacent Nodes / neighbors === if e = [u,v],then u and v are nodes called end points of e. u and v are said to be Adjacent nodes.
+2. Degree of node === the degree of node u, written deg(u), is the number of edges containing u.
+3. Isolated Node === if deg(u) = 0, then u is called an Isolated node.
+4. Path === A path P of length n from a node u to a node v is defined as a sequence of n+1 nodes. 
+--> P = (v0,v1,v2,...,vn)
+5. Closed Path === the path is said to be closed path if v0 = vn (starting node is equal to end node)
+6. Simple path === The path is said to be simple if all the nodes are distinct, with the exception that v0 may equal to vn.
+7. Connected graph === A graph G is said to be connected if there is a path between any two of its nodes(Without any isolated node).
+8. Tree / Free tree / Tree graph === A connected graph T Without any circles is called a tree graph or free tree or simply a tree.
+--> this means in particular, that there is a unique simple path P between any two nodes u and v in T.
+--> If T is finite tree with m nodes, then T will have m-1 edges.
+9. Labelled graph === A graph is said to be labelled if its edges are assigned data.
+--> A graph G is said to be weighted if each edge e in G assigned a non negative numerical value w(e) called the weight or length of e.
+10. Multiple edges === Distinct edges e nd e' are called multiple edges if they connect the same end points that is, if e = [u,v] and e' = [u,v].
+11. loop === An edge is called a loop if it has identical end points, that is, if e = [u,u].
+12. Multi-graph === Multi-graph is a graph consisting of multiple edges and loops.
+
+
+
+graph types : Directed graph and Undirected graph
+
+Directed graph / Digraph === A Directed graph G also called digraph or graph is same as Multi-graph except that each edge e in G is assigned a direction, or in other words, each edge e is identified with an ordered pair (u,v) of nodes in G rather than an unordered pair [u,v].
+-->Arc = Suppose G is directed graph with directed edges e = (u,v). then e is also called an 'arc'.
+
+Complete graph / Universal graph / Clique  === A simple graph in which there exists an edge between every pair of vertices is called a Complete graph. It is also known as a universal graph or Clique.
+
+Null graph === A graph Without any edge is called a null graph. In other words, every vertex in a null graph is an isolated vertex
+
+Sub-graph === A graph G' = (V',E') is a sub-graph of graph G = (V,E) if V' is a subset of V and E' is a subset of E. Thus for G' to be a sub-graph of graph G, all the vertices and edges og G' should be in G.
+
+
+Representation of Graph:
+
+1. Adjacency List :
+ An array of lists is used. The size of the array is equal to the number of vertices. Let the array be an array[]. An entry array[i] represents the list of vertices adjacent to the ith vertex. This representation can also be used to represent a weighted graph.
+--> Cost Adjacency List = The weights of edges can be represented as lists of pairs.
+
+2. Adjacency Matrix : 
+ Adjacency Matrix is a 2D array of size V x V where V is the number of vertices in a graph. Let the 2D array be adj[][], a slot adj[i][j] = 1 indicates that there is an edge from vertex i to vertex j. Adjacency matrix for undirected graph is always symmetric. Adjacency Matrix is also used to represent weighted graphs.
+--> Cost Adjacency Matrix = If adj[i][j] = w, then there is an edge from vertex i to vertex j with weight w.
+
+Other representation = Compact List representation - (entire graph stored in 1-d array), Edge set - (Store the pair of nodes/vertices connected with an edge. EG-{(0,1),(0,4),(1,4)} ) etc.
+
+
+Graph Traversal : it refers to the process of visiting (checking and/or updating) each vertex (node) in a graph.
+--> Exploring a vertex in a graph means visiting all the connected vertices.
+
+1. Breadth First Search (BFS)
+--> It uses Queue.
+--> Similar to level order traversal in tree
+--> In BFS, we start with a node and start exploring its connected nodes. The same process is repeated with all the connecting nodes until all the nodes are visited.
+--> During execution of algo, each node N of G will be in one of three states called status of N:
+    -Status = 1 (Ready State)
+    -Status = 2 (Waiting State)
+    -Status = 3 (Processed State)
+
+Algorithm-: This algorithm executes a BFS on a graph G beginning atv a starting node A.
+step 1. Initialize all nodes to the ready state (Status = 1).
+step 2. Put the starting(source) node A in queue and change its status to the waiting state (Status = 2).
+step 3. [Loop] Repeat steps 4 and 5 until Queue is empty :
+step 4. Remove the front node N of Queue. Process N and change the status of N to the processed state (Status = 3).
+step 5. Add to the rear of queue all the neighbors of N that are in the ready state (Status = 1), and change their status to waiting state (Status = 2). [End of step 3 Loop]
+step 6. Exit.
+
+
+2. Depth First Search (BFS) 
+--> It uses Stack.
+--> During execution of algo, each node N of G will be in one of three states called status of N:
+    -Status = 1 (Ready State)
+    -Status = 2 (Waiting State)
+    -Status = 3 (Processed State)
+
+Algorithm-: This algorithm executes a DFS on a graph G beginning atv a starting node A.
+step 1. Initialize all nodes to the ready state (Status = 1).
+Step 2. Push the starting(source) node A onto Stack and change its status to the waiting state (Status = 2).
+step 3. [Loop] Repeat steps 4 and 5 until Stack is empty :
+step 4. Pop the top N of stack. process N and change its status to the processed state (Status = 3). 
+step 5. Push onto stack all the neighbors of N that are in the ready state (Status = 1), and change their status to waiting state (Status = 2). [End of step 3 Loop]
+step 6. Exit.
+
+
+
+
+Minimal Spanning tree :
+--> We then wish to find an acyclic subset T that connects all of the vertices and whose total weight is minimized.
+--> since T is acyclic and connects all of the vertices, it must form a tree, which we call a spanning tree since it spans the graph G.
+--> We call the problem of determining the tree T the minimum spanning tree problem.
+
+Two algorithms to solve the minimum spanning tree:
+
+1. Kruskal's Algorithm-:
+--> In this we assume that every vertices or nodes are a tree with only single node.
+--> It finds a safe edge to add to the growing forest by finding, of all the edges that connect any two trees in the forest, an edge [u,v] of least weight.
+--> we have to use these 3 process 
+    1. MAKE_SET(v) === create a set 
+    2. FIND_SET(u) === a set represents a tree, return a representative that tell that in which tree(set) u is available
+    3. UNION(u,v) === add two trees(set) and make a new tree
+[Note - Assume that these 3 process are predefined ]
+
+Algorithm(Kruskal(G))-: 
+here A = set of edges,  
+step 1. [Initialize] A:= Φ.
+step 2. [Loop] For each vertex v ∈ V[G] do step 3 .
+step 3. MAKE_SET(v).
+step 4. Sort the edges of E into non-decreasing(increasing) order by weight W.
+step 5. [Loop] For each edge [u,v] ∈ E taken in non-decreasing order by weight. Do step 6.
+step 6. If FIND_SET(u) ≠ FIND_SET(v) then:
+        A:= AU{[u,v]},UNION(u,v)
+step 7. Return A.
+
+
+1. Prim's Algorithm-:
+--> It has the property that the edges in the set A always form a single tree.
+--> The tree starts from an arbitrary vertex r and grows until the tree spans all the vertices in V.
+--> Utilities 
+    1. EXTRACT_MIN(Q) === Extract minimum nodes from queue that we are maintaining.
+
+Algorithm(MSTPRIM(G,w,r))-: All vertices that are not in the tree reside(belongs to) in a min priority queue Q based on a field. For each vertex v, key[v] is the minimum weight of any edge connecting v to a vertex in the tree; by convention, key[v] = ∞ if there is no such edge. The field π(v) names the parent of v in the tree.
+Step 1. [Loop] For each u ∈ V[G] do step 3.
+Step 2. Key[u]:= ∞,π(u):= NIL
+Step 3. Key[r]:= 0
+Step 4. Q:= V[G]
+Step 5. Repeat steps 6 to 8, while Q ≠ Φ
+Step 6. u:= EXTRACT_MIN(Q)
+Step 7. For each v ∈ Adj[u]
+Step 8. If v ∈ Q and w(u,v)< key[v]
+            then: π[v]:= u, key[v]:= w(u,v)
+Step 9. Exit.
+
+
+
+
+Dijkstra’s shortest path algorithms: shortest path from source to all other nodes 
+--> It is generalization of BFS algorithm.
+--> It is based on greedy algorithm.
+--> It uses priority queue to store unvisited vertices by distance from s(source).
+--> Does not work with negative weights.
+--> Distance table -:
+    vertex  | Distance[v]  |Previous vertex which gave distance[v] (π[v])
+            |              |
+
+    1. This algorithm works by keeping the shortest distance of vertex v from the source in Distance table
+    2. Distance[v] holds the distance from s to V.
+    3. The shortest distance of the source to itself is 0.
+    4. Distance[v] of all other vertices are set to INFINITY to indicate that those vertices are not yet processed.
+
+Algorithm(DIJKSTRA(G,w,s))-:
+s = set of vertices
+Step 1. Initialize-single-source(G,s)
+Step 2. S = Φ, Q= V[G]
+Step 3. Repeat thru steps 4 to 6 while Q ≠ Φ
+Step 4. u = EXTRACT_MIN(Q), S = SU{u}
+Step 5. Repeat for each vertex v ∈ Adj[u]
+Step 6. RELAX(u,v,w)
+        [Procedure RELAX(u,v,w)
+            Step 6.1. if d[v] > d[u]+w(u,v)
+                    then: d[v] = d[u] + w(u,v), π[v]= u
+            Step 6.2. Return]
+Step 7. Exit.
+
+Procedure RELAX(u,v,w)
+Step 1. if d[v] > d[u]+w(u,v)
+        then: d[v] = d[u] + w(u,v), π[v]= u
+Step 2. Return
