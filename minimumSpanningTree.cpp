@@ -79,7 +79,6 @@ public:
         rank = new int[n];
         for (int i = 0; i < n; i++)
         {
-            /* code */
             parent[i] = i;
             rank[i] = 0;
         }
@@ -88,13 +87,17 @@ public:
     {
         if (parent[i] == i)
             return i;
+        // return findParent(parent[i]); it will also work but we have to find root everytime so we use
+        // Path compression step
         return parent[i] = findParent(parent[i]);
     }
 
     void unnion(int comp1, int comp2)
     {
         int par1 = findParent(comp1), par2 = findParent(comp2);
-
+        // rank is required to maintain the depth of the tree
+        // since we only make parent those nodes who have higher rank
+        // and if rank is same then we have to increase the rank.
         if (rank[par1] < rank[par2])
             parent[par1] = par2;
         else if (rank[par1] > rank[par2])
