@@ -95,6 +95,7 @@ public:
     void unnion(int comp1, int comp2)
     {
         int par1 = findParent(comp1), par2 = findParent(comp2);
+        if(par1 == par2) return ;
         // rank is required to maintain the depth of the tree
         // since we only make parent those nodes who have higher rank
         // and if rank is same then we have to increase the rank.
@@ -103,7 +104,7 @@ public:
         else if (rank[par1] > rank[par2])
             parent[par2] = par1;
         else
-            parent[par1] = par2, rank[comp1]++;
+            parent[par1] = par2, ++rank[par2];
     }
 };
 
